@@ -44,6 +44,8 @@ app.get('/posts', (req, res) => {
 
 app.post('/events', (req, res) => {
     const { type, data } = req.body;
+    console.log('Received an event: ', type, data);
+
     handleEvents(type, data);
 
     return res.send({});
@@ -52,7 +54,7 @@ app.post('/events', (req, res) => {
 app.listen(4002, async () => {
     console.log('Listening on 4002');
 
-    const {data: events} = await axios.get('http://localhost:4005/events');
+    const {data: events} = await axios.get('http://event-bus-clusterip-srv:4005/events');
 
     for (const event of events){
         console.log('Processiong event: ', event.type);

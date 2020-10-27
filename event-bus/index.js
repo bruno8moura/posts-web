@@ -9,13 +9,14 @@ const events = [];
 
 app.post('/events', async (req, res) => {
     const anEvent = req.body;
+    console.log('anEvent: ', anEvent);
 
     events.push(anEvent);
 
-    await axios.post('http://localhost:4000/events', anEvent);
-    await axios.post('http://localhost:4001/events', anEvent);
-    await axios.post('http://localhost:4002/events', anEvent);
-    await axios.post('http://localhost:4003/events', anEvent);
+    await axios.post('http://posts-clusterip-srv:4000/events', anEvent);
+    await axios.post('http://comments-clusterip-srv:4001/events', anEvent);
+    await axios.post('http://query-clusterip-srv:4002/events', anEvent);
+    await axios.post('http://moderation-clusterip-srv:4003/events', anEvent);
 
     res.send({status: 'OK'});
 });

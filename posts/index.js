@@ -24,7 +24,7 @@ app.post('/posts', async (request, response) => {
         id, title
     };
 
-    await axios.post('http://localhost:4005/events', {
+    await axios.post('http://event-bus-clusterip-srv:4005/events', {
         type: 'PostCreated',
         data: posts[id]
     });
@@ -39,5 +39,6 @@ app.post('/events', (req, res) => {
 });
 
 app.listen(4000, () => {
+    console.log('NOVA VERSÃO 6.0!');
     console.log('Listening on 4000');
 })

@@ -28,7 +28,7 @@ app.post('/posts/:id/comments', async (request, response) => {
 
     commentsByPostId[id] = comments;
 
-    await axios.post('http://localhost:4005/events', {
+    await axios.post('http://event-bus-clusterip-srv:4005/events', {
         type: 'CommentCreated',
         data: {
             ...newComment,
@@ -40,9 +40,9 @@ app.post('/posts/:id/comments', async (request, response) => {
 });
 
 app.post('/events', async (req, res) => {
-    console.log('Received Event: ', req.body.type);
-
+    
     const { type, data } = req.body;
+    console.log('Received an event: ', type, data);
 
     if('CommentModerated' === type){
         const { postId, id, status } = data;
@@ -55,7 +55,7 @@ app.post('/events', async (req, res) => {
 
         const commentUpdated = {...comment, postId};
         console.log('commentUpdated2: ', commentUpdated);
-        await axios.post('http://localhost:4005/events', {
+        await axios.post('http://event-bus-clusterip-srv:4005/events', {
             type: 'CommentUpdated',
             data: commentUpdated
         });
