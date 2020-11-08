@@ -8,7 +8,7 @@ export default () => {
 
     useEffect(()=> {
         async function loadPostList() {
-            const list = await axios.get('http://localhost:4002/posts');
+            const list = await axios.get('http://posts.com/query/posts');
             setPosts(list.data);
         }
 
