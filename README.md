@@ -29,16 +29,22 @@ My email bruno8moura@gmail.com
 
 ### Prerequisites
 
-NodeJS version: ^12
+[NodeJS version](https://nodejs.org/): ^12
 
-Docker version: ^v19.03.8
+[Docker version](https://www.docker.com/): ^v19.03.8
 
-Kubernetes version: ^v1.19.2
+[Kubernetes version](https://kubernetes.io/): ^v1.19.2
 
-skaffold version: ^v1.16.0
+[skaffold version](https://skaffold.dev/): ^v1.16.0
 
-minikube version: ^v1.13.1
+[minikube version](https://minikube.sigs.k8s.io/): ^v1.13.1
 
 ## Running application
 
-skaffold dev
+1. set in your hosts file the domain "posts.com"
+    1.1 When using windows or mac, the domain have to map to the localhost or 127.0.0.1
+    1.2 When using linux, the domain have to map to the minikube's ip
+
+2. Run: minikube start 
+
+3. Run: skaffold dev
